@@ -14,10 +14,10 @@ public class DataHelper {
         return new AuthInfo("vasya", "qwerty123");
     }
     public static AuthInfo getAuthInfoWithRandomPassword() {return new AuthInfo("petya", generateRandomPassword());}
-    private static String generateRandomLogin() {
+    public static String generateRandomLogin() {
         return faker.name().username();
     }
-    private static String generateRandomPassword() {
+    public static String generateRandomPassword() {
         return faker.internet().password();
     }
     public static AuthInfo generateRandomUser() {

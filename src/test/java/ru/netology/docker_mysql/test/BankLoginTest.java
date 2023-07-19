@@ -62,15 +62,13 @@ public class BankLoginTest {
     @DisplayName("Should block user if login with exist in base and active user and entered random password three times")
     void shouldBlockIfLoginWithExistUserAndEnteredRandomPasswordThreeTimes() {
         var loginPage = open("http://localhost:9999", LoginPage.class);
-        var authInfoLogin = DataHelper.getAuthInfoWithRandomPassword();
-        loginPage.validLogin(authInfoLogin);
-        loginPage.verifyErrorNotificationVisibility();
 
         for (int i = 0; i < 3; i++) {
-            loginPage.getLoginField().clear();
-            loginPage.getPasswordInput().clear();
+            var authInfoLogin = DataHelper.getAuthInfoWithRandomPassword();
             loginPage.validLogin(authInfoLogin);
             loginPage.verifyErrorNotificationVisibility();
+            loginPage.clearFields();
         }
+        loginPage.findErrorNotificationVisibility("Вход в личный кабинет заблокирован. Обратитесь в службу поддержки.");
     }
 }
